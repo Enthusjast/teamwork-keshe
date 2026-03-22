@@ -1,0 +1,19 @@
+% 重定义 block 环境
+% 1. 载入圆角和阴影的内部主题
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+% 2. 设置 Block 的具体颜色方案
+% 设置标准 Block (block)
+\setbeamercolor{block title}{fg=white,bg=themecolor}
+\setbeamercolor{block body}{fg=black,bg=themecolor1}
+
+% 设置提示 Block (alertblock)
+\setbeamercolor{block title alerted}{fg=white, bg=red!70!black}
+\setbeamercolor{block body alerted}{fg=black, bg=red!10!white}
+
+% 设置示例 Block (exampleblock)
+\setbeamercolor{block title example}{fg=white, bg=green!50!black}
+\setbeamercolor{block body example}{fg=black, bg=green!10!white}
+
+% 4. 细节调整：确保字体和间距符合预期
+\setbeamerfont{block title}{size=\large, series=\mdseries}

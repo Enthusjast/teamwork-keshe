@@ -1,5 +1,6 @@
 \documentclass[aspectratio=169]{ctexbeamer}
 \usepackage[bluetheme]{ustcbeamer}
+\usepackage{blocktheme}
 \input{ustctheme.tex}
 \setCJKmainfont{SimSun}[BoldFont=SimHei,ItalicFont=KaiTi]
 \title[AI图像识别技术及其应用]{AI图像识别技术及其应用}
@@ -34,25 +35,25 @@
 
 \section[技术概述]{AI图像识别技术概述}
 
-%\begin{frame}
+% \begin{frame}
 %    \frametitle{技术定义}
 %    \begin{block}{核心原理}
 %        AI图像识别的目标是让计算机``看懂图片''.
 %        通过学习大量图像数据,计算机可以逐渐学会识别物体,例如区分猫和狗,识别道路标志或判断图片中的人物.
-%
+
 %        例如Google的\textbf{Google Photos}可以自动识别照片中的人物和地点,并进行智能分类.
 %    \end{block}
 %    \begin{block}{性能指标}
 %        评价图像识别系统时,通常关注识别的准确率和处理速度.
-%
+
 %        例如手机中的人脸解锁系统通常需要在不到一秒的时间内完成识别,同时保持较高的准确率.
 %    \end{block}
 %    \begin{block}{与传统方法区别}
 %    传统图像处理依赖人工设计规则,例如手动寻找图像中的边缘或颜色.
-%
+
 %    而AI方法可以通过学习大量数据自动总结规律,因此在复杂场景中往往表现更好,例如自动驾驶中的道路识别.
 %    \end{block}
-%\end{frame}
+% \end{frame}
 
 \begin{frame}
     \frametitle{发展起源}
@@ -269,7 +270,7 @@
             \begin{block}{实验监测}
                 摄像头可以识别实验操作步骤,并提醒学生遵守安全规范.
             \end{block}
-        \end{column}
+        \end{column}.
         \begin{column}{0.3\textwidth}
             \begin{block}{互动学习}
                 一些学习软件可以识别拍照的题目,并自动提供解析.
@@ -336,8 +337,8 @@
     通过对输入图像添加细微的扰动,可以轻易误导AI模型.
     \begin{itemize}
         \item \textbf{原理}:通过计算梯度,在原图$x$上叠加微小噪声$\varepsilon$,使得$f(x + \varepsilon) \neq f(x)$.
-        \item \textbf{威胁}:如在路牌上贴特定贴纸导致自动驾驶系统误判.
+            \item \textbf{威胁}:如在路牌上贴特定贴纸导致自动驾驶系统误判.
     \end{itemize}
 \end{frame}
 
-\end{document}
+\end{document}l

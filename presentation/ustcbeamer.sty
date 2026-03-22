@@ -1,5 +1,5 @@
 \ProvidesPackage{ustcbeamer}
-\usepackage[most]{tcolorbox}
+
 \RequirePackage{tikz}
 
 
@@ -27,19 +27,16 @@
 %\setCJKmainfont{STKaiti}      %全局中文字体，自行设置
 \defbeamertemplate*{headline}{BLANK}{}
 % \defbeamertemplate*{navigation symbols}{} %隐藏导航按钮
-\setbeamerfont{normal text}{series=\mdseries}
-\setbeamerfont{block body}{series=\mdseries}
 
 \setbeamerfont{frametitle}{size=\large}
 
 \setbeamercolor{section in toc}{fg=black}
-\setbeamercolor{block title}{fg=white,bg=themecolor}
+\setbeamercolor{block title}{fg=black}
 \setbeamercolor{caption name}{fg=black}
 \setbeamercolor{title}{fg=white}%
 \setbeamercolor{frametitle}{fg=white}%
 \setbeamercolor{item projected}{bg=themecolor}%
 \setbeamercolor{item}{fg=themecolor}
-\setbeamercolor{block body}{fg=black,bg=themecolor1}
 
 \setbeamertemplate{items}[bullet]%
 \setbeamertemplate{item}[bullet]%
@@ -51,27 +48,27 @@
 %--------------------
 %标题页
 \defbeamertemplate*{title page}{}[1][]{%
-	\strut\vfill\strut%
-	\begin{centering}%
-        \vfill\vfill\vfill\vfill%
-        {\usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle}%
-        \vfill%
-        \begingroup{\ifx\insertsubtitle\empty%
-        \else%
-        \usebeamercolor[fg]{title}\usebeamerfont{title}\large{\insertsubtitle}
-        \vfill%
-        \fi}\endgroup%
-        \begin{beamercolorbox}[center,#1]{author}%
-            \usebeamercolor[bg]{frametitle}\usebeamerfont{author}\insertauthor%
-        \end{beamercolorbox}\vfill%
-        \begin{beamercolorbox}[center,#1]{institute}%
-            \usebeamercolor[fg]{title}\usebeamerfont{institute}\insertinstitute%
-        \end{beamercolorbox}\vfill%
-        \begin{beamercolorbox}[center,#1]{date}%
-            \usebeamercolor[fg]{title}\usebeamerfont{date}\insertdate%
-        \end{beamercolorbox}%
-	\end{centering}
-	\vfill\vfill\vfill\vfill\vfill%
+\strut\vfill\strut%
+\begin{centering}%
+\vfill\vfill\vfill\vfill%
+{\usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle}%
+\vfill%
+\begingroup{\ifx\insertsubtitle\empty%
+\else%
+\usebeamercolor[fg]{title}\usebeamerfont{title}\large{\insertsubtitle}
+\vfill%
+\fi}\endgroup%
+\begin{beamercolorbox}[center,#1]{author}%
+\usebeamercolor[bg]{frametitle}\usebeamerfont{author}\insertauthor%
+\end{beamercolorbox}\vfill%
+\begin{beamercolorbox}[center,#1]{institute}%
+\usebeamercolor[fg]{title}\usebeamerfont{institute}\insertinstitute%
+\end{beamercolorbox}\vfill%
+\begin{beamercolorbox}[center,#1]{date}%
+\usebeamercolor[fg]{title}\usebeamerfont{date}\insertdate%
+\end{beamercolorbox}%
+\end{centering}
+\vfill\vfill\vfill\vfill\vfill%
 }%
 %页脚
 \defbeamertemplate*{footline}{footlineoff}{}
@@ -121,24 +118,3 @@
     \usebeamercolor[bg]{subsection number projected}%
     \vrule width1ex height1ex\kern1ex\inserttocsubsection}
 \setbeamertemplate{subsection in toc}[subsectionhorizontal]
-
-% 重定义 block 环境
-\makeatletter
-\renewenvironment{block}[1]{%
-    \par\vspace{\medskipamount}% 上方间距
-    \begin{tcolorbox}[
-        colback=themecolor1,
-        colframe=themecolor1,
-        colbacktitle=themecolor,
-        coltitle=white,
-        title={#1},
-        arc=4pt,
-        boxrule=0pt,
-        drop shadow={black!20},
-        fonttitle=\bfseries,
-    ]
-}{%
-  \end{tcolorbox}%
-  \par\vspace{\medskipamount}% 下方间距
-}
-\makeatother
