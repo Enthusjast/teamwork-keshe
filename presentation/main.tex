@@ -2,7 +2,7 @@
 \usepackage[bluetheme]{ustcbeamer}
 \usepackage{blocktheme}
 \input{ustctheme.tex}
-\setCJKmainfont{SimSun}[BoldFont=SimHei,ItalicFont=KaiTi]
+% \setCJKmainfont{SimSun}[BoldFont=SimHei,ItalicFont=KaiTi]
 \title[AI图像识别技术及其应用]{AI图像识别技术及其应用}
 \author[苏家望,李越衡,崔俊熙]{报告人:苏家望,李越衡,崔俊熙}
 \institute[USTC]{中国科学技术大学,少年班学院}
@@ -17,10 +17,10 @@
 
 \AtBeginSection[]{
     \setbeamertemplate{footline}[footlineoff]
-        \begin{frame}
-            \frametitle{大纲}
-            \tableofcontents[currentsection,subsectionstyle=show/show/hide]
-        \end{frame}
+    \begin{frame}
+        \frametitle{大纲}
+        \tableofcontents[currentsection,subsectionstyle=show/show/hide]
+    \end{frame}
     \setbeamertemplate{footline}[footlineon]
 }
 
@@ -33,7 +33,7 @@
     \setbeamertemplate{footline}[footlineon]
 }
 
-\section[技术概述]{AI图像识别技术概述}
+\section[技术概述]{AI图像识别的技术概述}
 
 % \begin{frame}
 %    \frametitle{技术定义}
@@ -57,14 +57,39 @@
 
 \begin{frame}
     \frametitle{发展起源}
-    \begin{itemize}
-        \item \textbf{早期探索}\\20世纪中期,科学家提出了最早的神经网络模型,希望让计算机能够识别简单图形,例如直线或几何形状.
-        \item \textbf{算法发展}\\20世纪末,研究人员开始利用神经网络识别手写数字.例如美国AT\&T实验室的研究团队开发的系统,可以识别银行支票上的数字.
-        \item \textbf{深度学习时代}\\2012年之后,随着计算能力和数据规模的提升,深度学习技术迅速发展.例如多伦多大学团队开发的图像识别系统在国际竞赛中大幅提高了识别准确率,推动了AI视觉技术的快速发展.
-    \end{itemize}
+
+    \begin{columns}[t]
+        \begin{column}{0.3\textwidth}
+            \begin{block}{早期探索}
+                20世纪中期,科学家提出了最早的神经网络模型,希望让计算机能够识别简单图形,例如直线或几何形状.
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.8\linewidth]{figures/fig1.png}
+                \end{figure}
+            \end{block}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \begin{block}{算法发展}
+                20世纪末,研究人员开始利用神经网络识别手写数字.例如美国AT\&T实验室的研究团队开发的系统,可以识别银行支票上的数字.
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.8\linewidth]{figures/fig2.png}
+                \end{figure}
+            \end{block}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \begin{block}{深度学习时代}
+                Geoffrey Hinton 和 John Hopfield 共同获得 2024 年诺贝尔物理学奖以表彰他们利用人工神经网络进行机器学习的基础发现和发明.
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.7\linewidth]{figures/fig3.jpg}
+                \end{figure}
+            \end{block}
+        \end{column}
+    \end{columns}
 \end{frame}
 
-\section[技术原理]{AI图像识别技术原理}
+\section[技术原理]{AI图像识别的技术原理}
 
 \begin{frame}
     \frametitle{数据采集与预处理}
@@ -92,77 +117,81 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{特征提取与分析}
+    \frametitle{层级特征学习}
     \begin{columns}[t]
         \begin{column}{0.3\textwidth}
-            \begin{block}{边缘特征}
-                计算机可以检测图像中的边缘,例如物体的轮廓.
+            \begin{block}{浅层特征}
+                网络浅层检测基础视觉元素,如边缘,角点和颜色块.
 
-                例如在识别人脸时,眼睛,鼻子和嘴巴的轮廓信息非常重要.
+                这些低级特征与具体任务无关,在不同数据集中具有通用性.
             \end{block}
         \end{column}
         \begin{column}{0.3\textwidth}
-            \begin{block}{纹理特征}
-                纹理反映物体表面的结构,例如草地,布料或动物毛发等.
+            \begin{block}{中层特征}
+                将浅层边缘组合为纹理,局部形状和图案.
 
-                通过分析这些纹理特征,计算机可以更好地区分不同物体.
+                例如检测车轮的圆形轮廓,眼睛的椭圆形等更复杂的结构.
             \end{block}
         \end{column}
         \begin{column}{0.3\textwidth}
-            \begin{block}{颜色特征}
-                颜色也是识别的重要信息.
+            \begin{block}{高层语义特征}
+                网络最深层的神经元对应高级语义概念,如人脸,车辆,文字等.
 
-                例如交通信号灯和交通标志通常具有明显的颜色特征,因此计算机可以通过颜色快速进行识别.
+                层数越深,特征越抽象,与具体分类目标的关联越强.
             \end{block}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{模型训练与优化}
+    \frametitle{前向传播与反向传播}
     \begin{columns}[t]
         \begin{column}{0.3\textwidth}
-            \begin{block}{训练数据准备}
-                需要对大量图片进行标注,例如标出``猫''``狗''``汽车''等类别.
+            \begin{block}{前向传播}
+                输入图像经过多层卷积,池化等操作,逐层提取特征,最终由全连接层输出分类结果.
 
-                这些标注数据就是AI学习的重要材料.
+                每一层通过非线性激活函数引入表达能力.
             \end{block}
         \end{column}
         \begin{column}{0.3\textwidth}
-            \begin{block}{模型训练}
-                通过不断学习这些数据,模型逐渐学会识别不同类型的图像.
+            \begin{block}{损失函数}
+                将网络输出的预测值与真实标签进行比较,计算损失.
 
-                例如研究人员会让计算机反复观察大量图片,并不断调整模型参数.
+                交叉熵损失常用于分类任务:预测越准确,损失值越小.
             \end{block}
         \end{column}
         \begin{column}{0.3\textwidth}
-            \begin{block}{模型评估}
-                训练完成后,需要用新的图片进行测试.
+            \begin{block}{反向传播与梯度下降}
+                通过链式法则从输出层逐层向前计算每个参数的梯度.
 
-                如果识别错误较多,就需要继续改进模型或增加训练数据.
+                利用梯度下降更新权重: $w \leftarrow w - \eta \cdot \nabla L$,使损失逐步降低.
             \end{block}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{识别与分类算法}
+    \frametitle{主流网络架构}
     \begin{columns}[t]
         \begin{column}{0.3\textwidth}
             \begin{block}{卷积神经网络(CNN)}
-                这是目前最常用的图像识别方法.例如许多手机相机中的``场景识别功能''就是基于这种技术.
-            \end{block}
-        \end{column}
-        \begin{column}{0.3\textwidth}
-            \begin{block}{支持向量机(SVM)}
-                一种经典的机器学习算法,在早期图像分类任务中被广泛使用.
-            \end{block}
-        \end{column}
-        \begin{column}{0.3\textwidth}
-            \begin{block}{目标检测}
-                不仅可以识别图像中的物体类别,还可以找出它们在图像中的位置.
+                通过卷积核在图像上滑动提取局部特征,参数共享大幅减少参数量.
 
-                例如自动驾驶系统需要同时识别道路上的行人,自行车和车辆.
+                LeNet手写数字识别,AlexNet在ImageNet竞赛中取得突破.
+            \end{block}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \begin{block}{残差网络(ResNet)}
+                引入跳跃连接(skip connection),使梯度可以直接流向浅层.
+
+                解决了深层网络的退化问题,使百层以上的网络训练成为可能.
+            \end{block}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \begin{block}{Vision Transformer(ViT)}
+                将图像分割为固定大小的块,转化为序列输入Transformer.
+
+                在ImageNet上超越同规模CNN,推动了计算机视觉领域的范式转变.
             \end{block}
         \end{column}
     \end{columns}
@@ -172,53 +201,60 @@
 
 \begin{frame}
     \frametitle{市场规模与增长}
-    \begin{block}{全球发展}
-        AI图像识别已经成为人工智能的重要方向,被广泛应用于自动驾驶,医疗,机器人等领域.
-    \end{block}
-    \begin{block}{科技公司推动}
-        许多科技公司和研究机构都在研究计算机视觉技术,例如Google,Apple,Tesla以及多所大学实验室.
-    \end{block}
-\end{frame}
-
-\begin{frame}
-    \frametitle{行业竞争格局}
     \begin{columns}[t]
-        \begin{column}{0.3\textwidth}
-            \begin{block}{科技公司}
-                Google,Apple等科技公司在图像识别算法和应用方面投入大量研究.
-            \end{block}
+        \begin{column}{0.55\textwidth}
+            \begin{center}
+            \begin{tikzpicture}[scale=0.65]
+                % 坐标轴
+                \draw[->,thick] (0,0) -- (11,0) node[left] {\tiny 年份};
+                \draw[->,thick] (0,0) -- (0,6.5) node[below] {\tiny 亿美元};
+                % x轴刻度
+                \foreach \x/\year in {0/2015,1/2017,2/2019,3/2021,4/2023,5/2025,6/2027,7/2029,8/2031}
+                    \draw (\x*1.2,0) node[below] {\tiny \year};
+                % y轴刻度
+                \foreach \y/\val in {0/0,1/100,2/200,3/300,4/400,5/500,6/600}
+                    \draw (0,\y) node[left] {\tiny \val};
+                % 网格线
+                \foreach \y in {1,...,6}
+                    \draw[gray!20] (0,\y) -- (9.6,\y);
+                % 数据点: 2015~2030 (亿美元)
+                \draw[themecolor,line width=1.8pt]
+                    (0*1.2,0.45) --    % 2015: 45
+                    (0.5*1.2,0.58) --   % 2016: 58
+                    (1*1.2,0.75) --     % 2017: 75
+                    (1.5*1.2,0.95) --   % 2018: 95
+                    (2*1.2,1.20) --     % 2019: 120
+                    (2.5*1.2,1.15) --   % 2020: 115
+                    (3*1.2,1.40) --     % 2021: 140
+                    (3.5*1.2,1.70) --   % 2022: 170
+                    (4*1.2,2.00) --     % 2023: 200
+                    (4.5*1.2,2.30) --   % 2024: 230
+                    (5*1.2,2.65) --     % 2025: 265
+                    (5.5*1.2,3.05) --   % 2026: 305
+                    (6*1.2,3.50) --     % 2027: 350
+                    (6.5*1.2,4.03) --   % 2028: 403
+                    (7*1.2,4.63) --     % 2029: 463
+                    (7.5*1.2,5.32);      % 2030: 532
+                % 描点
+                \foreach \x/\y in {0/0.45,0.5/0.58,1/0.75,1.5/0.95,2/1.20,2.5/1.15,3/1.40,3.5/1.70,4/2.00,4.5/2.30,5/2.65,5.5/3.05,6/3.50,6.5/4.03,7/4.63,7.5/5.32}
+                    \filldraw[themecolor] (\x*1.2,\y) circle (2.5pt);
+                % 数据标注
+                \draw[dashed,themecolor!50] (4*1.2,2.00) -- (4*1.2,0) node[below] {\tiny \textbf{2023}};
+                \draw[dashed,themecolor!50] (7.5*1.2,5.32) -- (7.5*1.2,0) node[below] {\tiny \textbf{2030}};
+                \node[above] at (4*1.2,2.00) {\tiny \textbf{200亿}};
+                \node[above] at (7.5*1.2,5.32) {\tiny \textbf{500亿}};
+                % 图例
+                \draw[themecolor,line width=1.8pt] (1,6.2) -- (2,6.2);
+                \node[right] at (2,6.2) {\tiny 全球计算机视觉市场规模};
+            \end{tikzpicture}
+            \end{center}
         \end{column}
-        \begin{column}{0.3\textwidth}
-            \begin{block}{自动驾驶公司}
-                Tesla,Waymo等公司利用图像识别技术帮助车辆理解道路环境.
+        \begin{column}{0.4\textwidth}
+            \begin{block}{全球市场}
+                全球计算机视觉市场规模在2023年已超过\textbf{200亿美元},预计2030年将突破\textbf{500亿美元},年复合增长率超过15\%.
             \end{block}
-        \end{column}
-        \begin{column}{0.3\textwidth}
-            \begin{block}{科研机构}
-                MIT,斯坦福大学等高校也在不断推动计算机视觉技术的发展.
-            \end{block}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\section[应用领域]{AI图像识别的应用领域}
-
-\begin{frame}
-    \frametitle{安防监控领域}
-    \begin{columns}[t]
-        \begin{column}{0.3\textwidth}
-            \begin{block}{异常行为识别}
-                系统可以识别跌倒或打架等异常行为,并及时发出警报.
-            \end{block}
-        \end{column}
-        \begin{column}{0.3\textwidth}
-            \begin{block}{人脸识别}
-                手机或门禁系统可以通过识别人脸完成身份验证,例如iPhone中的Face ID功能.
-            \end{block}
-        \end{column}
-        \begin{column}{0.3\textwidth}
-            \begin{block}{区域安全监控}
-                在机场或车站等场所,AI系统可以帮助工作人员监控重要区域.
+            \begin{block}{主要驱动力}
+                算力成本下降与数据规模爆发推动AI图像识别在各行各业加速落地,广泛应用于自动驾驶,医疗影像和人脸识别等领域.
             \end{block}
         \end{column}
     \end{columns}
@@ -226,18 +262,20 @@
 
 \begin{frame}
     \frametitle{医疗影像诊断}
-    \begin{columns}[t]
-        \begin{column}{0.3\textwidth}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.9\linewidth]{figures/fig4.png}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
             \begin{block}{疾病检测}
                 AI可以辅助医生分析CT或X光图像,帮助发现异常区域.
             \end{block}
-        \end{column}
-        \begin{column}{0.3\textwidth}
             \begin{block}{疾病筛查}
                 例如英国一些医院利用AI分析眼底图像,帮助筛查糖尿病视网膜病变.
             \end{block}
-        \end{column}
-        \begin{column}{0.3\textwidth}
             \begin{block}{病理分析}
                 AI还可以帮助医生更快地分析显微镜下的组织切片,提高效率.
             \end{block}
@@ -247,33 +285,45 @@
 
 \begin{frame}
     \frametitle{智能交通系统}
-    \begin{block}{车辆识别}
-        通过摄像头识别车牌和车辆类型,用于交通管理.
-    \end{block}
-    \begin{block}{自动驾驶}
-        自动驾驶汽车需要通过图像识别技术理解道路环境,例如识别车道线和行人.
-    \end{block}
-    \begin{block}{交通安全预警}
-        系统可以检测行人或自行车,从而帮助减少交通事故.
-    \end{block}
+    \begin{columns}
+        \begin{column}{0.6\linewidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.9\linewidth]{figures/fig5.png}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.4\linewidth}
+            \begin{block}{车辆识别}
+                通过摄像头识别车牌和车辆类型,用于交通管理.
+            \end{block}
+            \begin{block}{自动驾驶}
+                自动驾驶汽车需要通过图像识别技术理解道路环境,例如识别车道线和行人.
+            \end{block}
+            \begin{block}{交通安全预警}
+                系统可以检测行人或自行车,从而帮助减少交通事故.
+            \end{block}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{教育领域应用}
-    \begin{columns}[t]
-        \begin{column}{0.3\textwidth}
-            \begin{block}{智能阅卷}
-                图像识别技术可以自动批改选择题,提高阅卷效率.
-            \end{block}
+    \frametitle{人脸识别}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.9\linewidth]{figures/fig6.png}
+            \end{figure}
         \end{column}
-        \begin{column}{0.3\textwidth}
-            \begin{block}{实验监测}
-                摄像头可以识别实验操作步骤,并提醒学生遵守安全规范.
+        \begin{column}{0.5\textwidth}
+            \begin{block}{身份验证}
+                手机解锁,门禁系统,移动支付等场景广泛使用人脸识别完成身份认证,例如Face ID.
             \end{block}
-        \end{column}.
-        \begin{column}{0.3\textwidth}
-            \begin{block}{互动学习}
-                一些学习软件可以识别拍照的题目,并自动提供解析.
+            \begin{block}{安防布控}
+                在机场,车站等公共场所识别重点人员,协助警方快速定位目标.
+            \end{block}
+            \begin{block}{活体检测}
+                通过分析眨眼,头部转动等动作判断是否为真人,防止照片或视频伪造攻击.
             \end{block}
         \end{column}
     \end{columns}
@@ -282,63 +332,277 @@
 \section[未来趋势]{AI图像识别的未来趋势}
 
 \begin{frame}
-    \frametitle{技术创新方向}
+    \frametitle{太空探索}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{figures/fig7.png}
+    \end{figure} 
     \begin{columns}[t]
-        \begin{column}{0.3\textwidth}
-            \begin{block}{多模态AI}
-                未来AI可能同时理解图像,文字和语音,使计算机理解能力更强.
+        \begin{column}{0.3\linewidth}
+            \begin{block}{自主导航}
+                实时识别岩石,沙丘,陡坡等障碍,
+                为火星车规划安全行驶路径.
             \end{block}
         \end{column}
-        \begin{column}{0.3\textwidth}
-            \begin{block}{边缘计算}
-                图像识别可以直接在摄像头或手机上完成,使系统反应更快.
+        \begin{column}{0.3\linewidth}
+            \begin{block}{科学目标识别}
+                自动分类与标记具有特殊纹理或颜色的岩石,
+                辅助科学家锁定高价值科学目标.
             \end{block}
         \end{column}
-        \begin{column}{0.3\textwidth}
-            \begin{block}{自学习技术}
-                未来AI可能通过更少的人工标注数据进行学习.
+        \begin{column}{0.3\linewidth}
+            \begin{block}{自我状态检测}
+                视觉检测探测器本体(如车轮,机械臂)的状态,
+                实现自主健康监控.
+            \end{block}
+        \end{column}
+    \end{columns}       
+\end{frame}
+
+\begin{frame}
+    \frametitle{文物保护}
+    \begin{columns}
+        \begin{column}{0.4\linewidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.9\linewidth]{figures/fig8.jpg}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.4\linewidth}
+            \begin{block}{多光谱成像分析}
+                通过可见光,紫外荧光,红外反射等多光谱成像,
+                结合X射线荧光光谱(XRF)分析,
+                实现对画作颜料成分,底层底稿及修复痕迹的无损检测.
+            \end{block}
+            \begin{block}{科学价值}
+                识别颜料元素分布,隐藏构图和画作状态,
+                为文物真伪鉴定,创作技法研究和修复保护提供科学依据,
+                大幅提升艺术品分析的精度与效率.
+            \end{block}
+\end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{动物监测}
+    \begin{columns}[t]
+        \begin{column}{0.4\linewidth}
+            \begin{block}{陆地动物识别}
+                在复杂背景中精准检测与分类羚羊,狐狸,牛等多类陆地动物,
+                通过目标框与关键点标注实现物种识别,
+                为野生动物监测提供高效手段.
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.7\linewidth]{figures/fig9.jpg}
+                \end{figure}
+            \end{block}
+        \end{column}
+        \begin{column}{0.4\linewidth}
+            \begin{block}{水下生物识别}
+                在复杂水下环境中检测鱼类,珊瑚及潜水员,
+                精准定位目标,
+                为海洋生物调查与水下生态监测提供自动化技术支持.
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.7\linewidth]{figures/fig10.jpg}
+                \end{figure}
             \end{block}
         \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}
-    \frametitle{潜在应用场景}
-    \begin{itemize}
-        \item \textbf{太空探索}\\NASA正在利用AI图像识别技术分析火星探测器拍摄的照片,自动识别岩石类型,沙丘结构等地貌信息,从而帮助科学家更快地研究火星环境.
-        \item \textbf{文化遗产保护}\\研究人员可以利用图像识别技术分析古代壁画或文物的损坏情况,例如识别裂缝,褪色或霉变区域,从而辅助文物修复工作.
-        \item \textbf{海洋生态监测}\\科学家通过水下摄像设备采集海洋生物图像,利用AI自动识别鱼类和珊瑚种类,从而研究海洋生态系统的变化.
-        \item \textbf{野生动物保护}\\在自然保护区中,研究人员利用自动相机拍摄野生动物照片,再通过AI识别不同物种,帮助统计动物数量并监测生态环境.
-    \end{itemize}
-\end{frame}
-
-\section[伦理问题]{AI图像识别的伦理问题}
+\section[社会安全]{AI图像识别的社会安全}
 
 \begin{frame}
-    \frametitle{数据隐私与安全}
-    人脸识别等技术的普及引发了公众对隐私泄露的担忧.
-    \begin{itemize}
-        \item 个人生物特征信息的过度采集.
-        \item 数据库泄露导致的身份冒用风险.
-    \end{itemize}
+    \frametitle{身份伪装与欺诈}
+    \scriptsize
+
+    \begin{columns}[t]
+        \begin{column}{0.6\linewidth}
+            \textbf{核心问题:深度伪造技术的技术滥用}
+
+            AI生成式技术的爆发让深度伪造(Deepfake)从实验室走向大众.
+            借助算法,不法分子可在数秒内制作以假乱真的图像,音频与视频,精准复刻他人面部特征与语音.
+            这种技术让身份冒充的门槛大幅降低,无需专业技能即可完成``换脸''与``拟声'',成为实施新型欺诈的核心工具.
+
+            \begin{columns}[t]
+                \begin{column}{0.3\linewidth}
+                    \begin{block}{\scriptsize 金融诈骗}
+                        \tiny
+                        伪造企业高管视频下达转账指令,或冒充亲友进行电信诈骗.
+                        利用视听的高度真实性骗取信任,给企业和个人带来直接且巨大的经济损失.
+                    \end{block}
+                \end{column}
+                \begin{column}{0.3\linewidth}
+                    \begin{block}{\scriptsize 名誉损害}
+                        \tiny
+                        恶意合成虚假不雅或不当言论视频,针对公众人物,企业或普通个人进行抹黑.
+                        这种``数字栽赃''破坏力极强,能在短时间内摧毁个人声誉与品牌公信力.
+                    \end{block}                    
+                \end{column}
+                \begin{column}{0.3\linewidth}
+                    \begin{block}{\scriptsize 信任危机}
+                        \tiny
+                        当``眼见为实''的传统认知被技术彻底颠覆,真实与伪造的边界变得模糊.
+                        这不仅增加了信息鉴别的成本,更动摇了社会对影像证据,媒体报道乃至人际互动的基本信任基础.
+                    \end{block}
+                \end{column}
+            \end{columns}
+        \end{column}
+        \begin{column}{0.4\linewidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\linewidth]{figures/fig11.png}
+            \end{figure}
+
+            技术原理示意:AI人脸交换技术通过深度学习算法,将目标人物的面部特征无缝映射到源视频中,生成逻辑连贯,视觉逼真的伪造内容.
+            这种技术的平民化与易用化,使得身份欺诈的风险呈现指数级上升,成为数字时代个人与机构面临的重大安全挑战.
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{算法偏见与公平性}
-    如果训练数据分布不均,模型可能对特定群体产生偏见.
-    \begin{itemize}
-        \item \textbf{样本偏差}:对不同肤色或年龄层的人群识别准确率存在差异.
-        \item \textbf{决策黑盒}:深度学习模型缺乏可解释性,难以追踪偏见来源.
-    \end{itemize}
+    \frametitle{大规模监控与隐私泄露}
+    \scriptsize
+
+    \begin{columns}[t]
+        \begin{column}{0.6\linewidth}
+            \textbf{核心问题:``监控社会''的技术化落地}
+            
+            无处不在的高清摄像头与具备毫秒级响应的AI识别算法相结合,彻底改变了传统安防的形态.
+            这使得对特定个体的大规模,低成本,实时追踪成为常态,物理空间的活动轨迹被实时转化为可存储,可分析的数据资产,
+            个人的``不可见性''在技术面前逐渐消失.
+
+            \begin{columns}[t]
+                \begin{column}{0.3\linewidth}
+                    \begin{block}{\scriptsize 隐私全面裸奔}
+                        \tiny
+                        行踪,行为乃至微表情被无孔不入地捕捉,传统的``独处''概念失效.
+                        在智能感知下,私人生活的透明度被无限放大,毫无保留.
+                    \end{block}
+                \end{column}
+                \begin{column}{0.3\linewidth}
+                    \begin{block}{\scriptsize 核心数据滥用}
+                        \tiny
+                        人脸,虹膜等生物特征数据一旦泄露或被滥用,将直接关联个人身份.
+                        这种不可更改的数据被窃取后,对人身和财产安全的威胁是不可逆的.
+                    \end{block}
+                \end{column}
+                \begin{column}{0.3\linewidth}
+                    \begin{block}{\scriptsize 自我噤声效应}
+                        \tiny
+                        当意识到时刻处于``被注视''状态,人们会自发调整行为迎合规训.
+                        这种``全景监狱''式的自我审查,将潜移默化地侵蚀社会的思想自由.
+                    \end{block}
+                \end{column}
+            \end{columns}
+
+            \begin{alertblock}{\scriptsize 警示}
+                \tiny
+                技术的中立性取决于应用边界.在享受智能安防红利的同时,必须为数据采集与使用设定严格的法律红线,
+                防止监控权力的无节制扩张,避免技术反噬成为悬在每个人头顶的``达摩克利斯之剑''.
+            \end{alertblock}
+        \end{column}
+        \begin{column}{0.4\linewidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\linewidth]{figures/fig12.png}
+            \end{figure}
+
+            监控摄像头与智能算法的深度融合,正在将物理世界全面数字化.
+            这种无死角的感知能力打破了公共空间与私人领域的传统边界,使个人行为轨迹,生物特征等敏感信息时刻暴露在数据网络中,
+            为隐私安全埋下了根本性隐患.
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{对抗攻击风险}
-    通过对输入图像添加细微的扰动,可以轻易误导AI模型.
-    \begin{itemize}
-        \item \textbf{原理}:通过计算梯度,在原图$x$上叠加微小噪声$\varepsilon$,使得$f(x + \varepsilon) \neq f(x)$.
-            \item \textbf{威胁}:如在路牌上贴特定贴纸导致自动驾驶系统误判.
-    \end{itemize}
+    \frametitle{公共安全与社会稳定威胁}
+    \scriptsize
+
+    \begin{columns}[t]
+        \begin{column}{0.6\linewidth}
+            \textbf{核心问题:AI技术的恶意滥用}
+
+            当AI图像识别与生成技术脱离监管,被不法分子用于非授权目的时,将直接突破传统安防的物理与技术防线.
+            这种滥用不仅能规避常规检查,更能通过制造虚假信息引发社会层面的连锁反应,成为威胁公共秩序与国家安全的隐形推手.
+            
+            \begin{columns}[t]
+                \begin{column}{0.3\linewidth}
+                    \begin{block}{\scriptsize 躲避安防检查}
+                        \tiny
+                        利用3D面具或深度伪造技术复刻面部特征,绕过机场,车站等关键枢纽的人脸识别闸机,
+                        使物理安检系统形同虚设,造成潜在的人员与物品流通风险.
+                    \end{block}
+                \end{column}
+                \begin{column}{0.3\linewidth}
+                    \begin{block}{\scriptsize 虚假信息煽动}
+                        \tiny
+                        通过生成高逼真度的虚假现场影像,在公共网络空间快速传播不实信息.
+                        这种``视觉欺骗''极易激化群体对立情绪,引发社会恐慌,破坏正常的社会舆论秩序.
+                    \end{block}
+                \end{column}
+                \begin{column}{0.3\linewidth}
+                    \begin{block}{\scriptsize 关键设施渗透}
+                        \tiny
+                        针对电力,交通等国家关键基础设施的智能视觉监控系统,实施算法干扰或输入欺骗,
+                        导致安防系统对异常行为的漏判,直接威胁国家基础设施的运行安全.
+                    \end{block}
+                \end{column}
+            \end{columns}
+
+            \begin{exampleblock}{\scriptsize 本质}
+                \tiny
+                这类技术滥用本质上是技术能力与安全伦理的失衡.
+                它不仅暴露了现有智能安防体系的脆弱性,更对社会治理提出了新的挑战——在享受技术便利的同时,
+                必须构建与之匹配的防御机制与法律红线.
+            \end{exampleblock}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\linewidth]{figures/fig13.png}
+            \end{figure}
+
+            \textbf{安检场景的技术博弈现场}
+
+            图为现代化枢纽的自助人脸识别通道,代表了当前公共安防的技术水平.
+            然而,一旦攻击者掌握了突破算法的方法,这种高效的自动化系统便可能成为防御链条中最薄弱的环节,引发系统性的安全连锁反应.
+        \end{column}
+    \end{columns}
 \end{frame}
 
-\end{document}l
+\section{总结}
+
+\begin{frame}
+    \frametitle{总结}
+    \begin{columns}[t]
+        \begin{column}{0.3\linewidth}
+            \begin{block}{技术核心}
+                AI图像识别依靠深度神经网络,通过层级特征学习和梯度下降算法,从海量数据中自动提取从浅层到高层的视觉特征.
+            \end{block}
+        \end{column}
+        \begin{column}{0.3\linewidth}
+            \begin{block}{广泛应用}
+                技术已在医疗影像诊断,智能交通和人脸识别等领域取得了显著成果,并加速向太空探索,文物保护,生态监测等前沿方向推进.
+            \end{block}
+        \end{column}
+        \begin{column}{0.3\linewidth}
+            \begin{block}{前景与挑战}
+                市场高速增长,技术创新活跃,但同时也面临数据隐私,算法偏见和对抗攻击等伦理与安全挑战.
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section*{致谢}
+
+\begin{frame}
+    \frametitle{}
+    \centering
+
+    \Huge Thanks!
+\end{frame}
+
+\end{document}
